@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</head>
+<body>
+  <header *ngIf="mostrarMenu">
+    <div class="german">
+      <h2 style="color: white;">GERMAN</h2>
+    </div>
+  </header>
+<div *ngIf="mostrarMenu" class="sidenav "> 
+  <app-menu-icon [text]="'Perfil'" [icon]="'fa fa-user-circle'" (iconClick)="click()"></app-menu-icon>
+  <app-menu-icon [text]="'Notificação'" [icon]="'fa fa-bell'"  (iconClick)="click()"></app-menu-icon>
+  <app-menu-icon [text]="' Consulta'" [icon]="'fa fa-tasks'"  (iconClick)="click()"></app-menu-icon>
+  <app-menu-icon [text]="'Histórico'" [icon]="'fa fa-history'"  (iconClick)="click()"></app-menu-icon>
+  <app-menu-icon [text]="'Cadastros'" [icon]="'fa fa-plus-circle'"  (iconClick)="click('\TodosCadastros')"></app-menu-icon>
+  <app-menu-icon [text]="'Relatórios'" [icon]="'fa fa-file-text'"  (iconClick)="click()"></app-menu-icon>
+  <app-menu-icon [text]="'Estoque'" [icon]="'fa fa-wrench'"  (iconClick)="click()"></app-menu-icon>
+  <app-menu-icon id="Sair" [text]="'Sair'" [icon]="'fa fa-sign-out'"  (iconClick)="click()"></app-menu-icon>
+</div>
+
+<div class="main">
+  <router-outlet>
+    
+  </router-outlet>
+</div>
+   
+</body>
+</html> 
