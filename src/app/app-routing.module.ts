@@ -12,10 +12,10 @@ import { AuthGuardService } from './login/auth-guard.service';
 const routes: Routes = [  
   {path: '', component: ExecProvaComponent, canActivate: [AuthGuardService]},
   {path: 'Login', component: LoginComponent},
-  {path: 'Provas', component: ProvasComponent, canActivate: [AuthGuardService]},
-  {path: 'Questoes', component: QuestoesComponent, canActivate: [AuthGuardService]},
-  {path: 'ProvasRealizadas', component: ProvasRealizadasComponent, canActivate: [AuthGuardService]},
-  {path: 'ExecProva', component: ExecProvaComponent, canActivate: [AuthGuardService]},
+  {path: 'Provas', component: ProvasComponent},
+  {path: 'Questoes', component: QuestoesComponent},
+  {path: 'ProvasRealizadas', component: ProvasRealizadasComponent},
+  {path: 'ExecProva', component: ExecProvaComponent},
   
 ];
 

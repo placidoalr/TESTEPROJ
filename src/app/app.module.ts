@@ -8,6 +8,8 @@ import { ProvasComponent } from './provas/provas.component';
 import { QuestoesComponent } from './questoes/questoes.component';
 import { ProvasRealizadasComponent } from './provas-realizadas/provas-realizadas.component';
 import { ExecProvaComponent } from './exec-prova/exec-prova.component';
+import { MenuIconComponent } from './menu-icon/menu-icon.component';
+import { CardsComponent } from './cards/cards.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ExecProvaComponent } from './exec-prova/exec-prova.component';
     ProvasComponent,
     QuestoesComponent,
     ProvasRealizadasComponent,
-    ExecProvaComponent
+    ExecProvaComponent,
+    CardsComponent,
+    MenuIconComponent
   ],
   imports: [
     BrowserModule,

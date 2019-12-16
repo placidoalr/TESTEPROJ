@@ -8,27 +8,22 @@
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </head>
 <body>
-  <header *ngIf="mostrarMenu">
-    <div class="german">
-      <h2 style="color: white;">GERMAN</h2>
-    </div>
-  </header>
-<div *ngIf="mostrarMenu" class="sidenav "> 
-  <app-menu-icon [text]="'Perfil'" [icon]="'fa fa-user-circle'" (iconClick)="click()"></app-menu-icon>
-  <app-menu-icon [text]="'Notificação'" [icon]="'fa fa-bell'"  (iconClick)="click()"></app-menu-icon>
-  <app-menu-icon [text]="' Consulta'" [icon]="'fa fa-tasks'"  (iconClick)="click()"></app-menu-icon>
-  <app-menu-icon [text]="'Histórico'" [icon]="'fa fa-history'"  (iconClick)="click()"></app-menu-icon>
-  <app-menu-icon [text]="'Cadastros'" [icon]="'fa fa-plus-circle'"  (iconClick)="click('\TodosCadastros')"></app-menu-icon>
-  <app-menu-icon [text]="'Relatórios'" [icon]="'fa fa-file-text'"  (iconClick)="click()"></app-menu-icon>
-  <app-menu-icon [text]="'Estoque'" [icon]="'fa fa-wrench'"  (iconClick)="click()"></app-menu-icon>
-  <app-menu-icon id="Sair" [text]="'Sair'" [icon]="'fa fa-sign-out'"  (iconClick)="click()"></app-menu-icon>
-</div>
-
-<div class="main">
-  <router-outlet>
+  <header >
     
-  </router-outlet>
-</div>
+  </header>
+<div id="sidenav"> 
+  <app-menu-icon [text]="'Login'" [icon]="'fa fa-user-circle'" (iconClick)="click('\Login')"></app-menu-icon>
+  <app-menu-icon [text]="'Provas'" [icon]="'fa fa-user-circle'" (iconClick)="click('\Provas')"></app-menu-icon>
+  <app-menu-icon [text]="'Questões'" [icon]="'fa fa-user-circle'" (iconClick)="click('\Questoes')"></app-menu-icon>
+  <app-menu-icon [text]="'Provas realizadas'" [icon]="'fa fa-user-circle'" (iconClick)="click('\ProvasRealizadas')"></app-menu-icon>
+  <app-menu-icon [text]="'Executar prova'" [icon]="'fa fa-user-circle'" (iconClick)="click('\ExecProva')"></app-menu-icon>
+  </div>
+
+  <div class="main">
+    <router-outlet>
+      
+    </router-outlet>
+  </div>
    
 </body>
 </html> 

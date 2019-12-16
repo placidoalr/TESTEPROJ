@@ -13,13 +13,11 @@ export class AppComponent {
   }
   ngOnInit(){
     
-      mostrar => this.mostrarMenu = mostrar;
   }
   
   public click(rota : string){
     console.log(rota);
     this.route.navigateByUrl(rota);
   }
-  mostrarMenu : boolean = false;
 
 }

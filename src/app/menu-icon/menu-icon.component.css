@@ -1,0 +1,27 @@
+.btUser{
+    text-align: center;
+    margin-top: 1%;
+}
+#userIcon{
+    font-size: 2rem;
+}
+#userIcon p{
+    font-size: 1.1rem;
+    margin-top: 1%;
+    
+}
+.btUser a:hover{
+    color:#9c0000;
+    text-decoration:none;
+}
+.btUser a{
+    color:#797979;
+}
+.teste{
+    text-align: center;
+}
+.appMenu{
+    padding:2%;
+    
+}
+
