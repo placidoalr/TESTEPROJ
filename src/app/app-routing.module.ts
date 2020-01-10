@@ -6,6 +6,7 @@ import { QuestoesComponent } from './questoes/questoes.component';
 import { ProvasRealizadasComponent } from './provas-realizadas/provas-realizadas.component';
 import { ExecProvaComponent } from './exec-prova/exec-prova.component';
 import { AuthGuardService } from './login/auth-guard.service';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +22,9 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

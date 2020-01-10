@@ -7,7 +7,7 @@
 }
 #userIcon p{
     font-size: 1.1rem;
-    margin-top: 1%;
+    margin-top: 2%;
     
 }
 .btUser a:hover{
@@ -19,9 +19,10 @@
 }
 .teste{
     text-align: center;
+    padding-left: 20px;
 }
 .appMenu{
-    padding:2%;
+    padding:3%;
     
 }
 

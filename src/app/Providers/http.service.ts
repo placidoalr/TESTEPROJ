@@ -9,7 +9,9 @@ import 'rxjs/add/operator/do';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class HttpService {
 
   public url : string;

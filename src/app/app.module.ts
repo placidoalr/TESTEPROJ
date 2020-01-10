@@ -10,6 +10,13 @@ import { ProvasRealizadasComponent } from './provas-realizadas/provas-realizadas
 import { ExecProvaComponent } from './exec-prova/exec-prova.component';
 import { MenuIconComponent } from './menu-icon/menu-icon.component';
 import { CardsComponent } from './cards/cards.component';
+import { FormsModule } from '@angular/forms';
+import { QuestoesService } from './questoes/questoes.service';
+import { LoginService } from './login/login.service';
+import { HttpService } from './Providers/http.service';
+import { AuthGuardService } from './login/auth-guard.service';
+import { AuthService } from './login/auth.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -24,9 +31,11 @@ import { CardsComponent } from './cards/cards.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [QuestoesService,LoginService,HttpService,AuthGuardService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
