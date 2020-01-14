@@ -8,13 +8,6 @@ import { ServerCommunicationService } from '../Providers/server-communication.se
 })
 export class ProvasComponent implements OnInit {
 
-  public id : any;
-  public questao: string;
-  public r1: string;
-  public r2: string;
-  public r3: string;
-  public r4: string;
-  public c: string;
   public listQuest = [""];
   public list = [""];
   public listTemp = [""];
@@ -24,13 +17,6 @@ export class ProvasComponent implements OnInit {
   constructor(private COM : ServerCommunicationService) {  }
 
   ngOnInit() {
-    this.id = 0;
-    this.questao = '';
-    this.r1 = '';
-    this.r2 = '';
-    this.r3 = '';
-    this.r4 = '';
-    this.c = 'r1';
     this.editando = false;
 
     //document.getElementById('text').focus();
@@ -38,6 +24,7 @@ export class ProvasComponent implements OnInit {
 
     this.COM.getAll("Prova").then(
       (response : any) => {
+        console.log("oooo h "+response.resposta)
         this.list = response.resposta;
       }
     ).catch(error => {
@@ -62,6 +49,7 @@ export class ProvasComponent implements OnInit {
       let json = {
         "questoes" : this.listTemp
       }
+      console.log(json.questoes)
       await this.COM.post("Prova",json).then(
         (response : any) => {
 
@@ -71,7 +59,7 @@ export class ProvasComponent implements OnInit {
         
       });
     }else{
-      console.log("owh"+this.listTemp.reduce((a:any,b:any) => (a | 0) + (b.peso | 0), 0))
+      console.log("owh "+this.listTemp.reduce((a:any,b:any) => (a | 0) + (b.peso | 0), 0))
     }
     
   }

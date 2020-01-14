@@ -1,1 +1,70 @@
-<p>exec-prova works!</p>
+<!--<div class="card teste">
+    <div class="card-body">
+        <h5 class="card-title"> <b>Cadastro do Layout de Ordem de Manutenção</b></h5>
+<p>questoes works!</p>
+</div>
+</div>-->
+<div class="card teste" *ngIf="executando">
+    <div class="card-body" >
+       <h5 class="card-title"> <b>Executar prova</b></h5>
+         <p></p>
+         <div>
+            <label >Nome: </label><input type="text" class="form-control" [(ngModel)]="nome" id="name" required>
+            <p></p>
+
+         </div>
+         <div class="card-body border"  *ngFor="let qt of prova">
+            <label>Questão: {{qt.ask}}</label> 
+                <p></p>
+                <label class="form-check-label row">
+                    <div class="col-11">a) {{qt.r1}}</div>
+                    <div class="col" ><input class="form-check-input" style="margin-top: 15%;" type="radio" name="{{qt.id}}" [(ngModel)]="qt.resp" value="r1" id="{{qt.id}}"></div>
+                </label> 
+                <p></p>
+                <label class="form-check-label row">
+                    <div class="col-11">b) {{qt.r2}} </div>
+                    <div class="col"><input class="form-check-input" style="margin-top: 15%;" type="radio" name="{{qt.id}}" [(ngModel)]="qt.resp" value="r2" id="{{qt.id}}"></div>
+                </label> 
+                <p></p>
+                <label class="form-check-label row">
+                    <div class="col-11">c) {{qt.r3}} </div>
+                    <div class="col"><input class="form-check-input" style="margin-top: 15%;" type="radio" name="{{qt.id}}" [(ngModel)]="qt.resp" value="r3" id="{{qt.id}}"></div>
+                </label> 
+                <p></p>
+                <label class="form-check-label row">
+                    <div class="col-11">d) {{qt.r4}} </div>
+                    <div class="col"><input class="form-check-input" style="margin-top: 15%;" type="radio" name="{{qt.id}}" [(ngModel)]="qt.resp" value="r4" id="{{qt.id}}"></div>
+                </label> 
+                <p></p>
+         </div>
+            
+      <a class="btn btn-danger" style="float:right " (click)="save()" *ngIf="executando">Salvar</a>
+      
+      <a class="btn btn-secondary" style="float:left" (click)="ngOnInit()"*ngIf="executando">Limpar</a>
+    </div>
+</div>
+<table class="table table-bordered" *ngIf="!executando && !retornarNota">
+  <thead>
+    <tr class="topo">
+      <th scope="col" class="nome">Prova</th>
+      <th scope="col" class="acao">EXECUTAR</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let pr of list">
+        <th scope="row">{{pr.id}}</th>
+        <td >
+          <a class="btn icone" style="margin-right: 4px;" (click)="executar(pr)">
+            <i class="fa fa-edit" ></i>
+          </a>                 
+        </td>
+    </tbody>
+</table>
+<div class="card teste" *ngIf="retornarNota">
+    <div class="card-body" >
+       <h5 class="card-title"> <b>Prova finalizada!</b></h5>
+        <p>{{nome}}, sua nota na prova foi {{nota}}!</p>
+        <a class="btn btn-secondary" style="float: right;" (click)="ngOnInit()"*ngIf="retornarNota">Continuar</a>
+    </div>
+</div>
+       
