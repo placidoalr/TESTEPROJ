@@ -1,1 +1,37 @@
-<p>provas works!</p>
+<!--<div class="card teste">
+    <div class="card-body">
+        <h5 class="card-title"> <b>Cadastro do Layout de Ordem de Manutenção</b></h5>
+<p>questoes works!</p>
+</div>
+</div>-->
+<div class="card teste">
+    <div class="card-body">
+       <h5 class="card-title"> <b>Cadastro de questões</b></h5>
+         <p></p>
+         <table class="table table-bordered" *ngIf="listQuest.length > 0">
+            <thead>
+              <tr class="topo">
+                <th scope="col" class="nome">Questão</th>
+                <th scope="col" class="acao">Selecionar</th>
+                <th scope="col" class="acao">Peso</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr  *ngFor="let qt of listQuest">
+                  <th scope="row">{{qt.ask}}</th>
+                  <td>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" [(ngModel)]="qt.selected" id="{{qt.id}}">
+                        <label class="custom-control-label" for="{{qt.id}}"></label>
+                      </div>              
+                  </td>
+                  <td><input type="text" class="form-control" [(ngModel)]="qt.peso"></td>
+              </tbody>
+          </table>
+            
+      <a class="btn btn-danger" style="float:right " (click)="save()" *ngIf="!editando">Salvar</a>
+      
+      <a class="btn btn-danger" style="float:right " (click)="saveEdit(ct)" *ngIf="editando">Editar</a>
+      <a class="btn btn-secondary" style="float:left" (click)="ngOnInit()">Limpar</a>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestoesService } from './questoes.service';
+import { ServerCommunicationService } from '../Providers/server-communication.service';
 
 @Component({
   selector: 'app-questoes',
@@ -19,7 +19,7 @@ export class QuestoesComponent implements OnInit {
   public editando : boolean = false;
 
 
-  constructor(private QUEST : QuestoesService) {  }
+  constructor(private COM : ServerCommunicationService) {  }
 
   ngOnInit() {
     this.id = 0;
@@ -34,7 +34,7 @@ export class QuestoesComponent implements OnInit {
     document.getElementById('text').focus();
     
 
-    this.QUEST.getAll().then(
+    this.COM.getAll("Questao").then(
       (response : any) => {
         console.log("lista"+response.resposta)
         this.list = response.resposta;
@@ -60,7 +60,7 @@ export class QuestoesComponent implements OnInit {
         "certa" : this.c,
       }
       console.log(json)
-      await this.QUEST.post(json).then(
+      await this.COM.post("Questao",json).then(
         (response : any) => {
 
           this.ngOnInit();
