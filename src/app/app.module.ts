@@ -35,7 +35,7 @@ import { ServerCommunicationService } from './Providers/server-communication.ser
     FormsModule,
     HttpModule
   ],
-  providers: [ServerCommunicationService,LoginService,HttpService,AuthGuardService,AuthService],
+  providers: [ServerCommunicationService, LoginService, HttpService, AuthGuardService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

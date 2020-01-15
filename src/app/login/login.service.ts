@@ -8,10 +8,10 @@ export class LoginService {
 
   constructor(public httpService: HttpService) { }
 
-  public login (username : string, password : string){
+  public login(username: string, password: string) {
     let json = {
-        userName : username,
-        password : password
+      userName: username,
+      password: password
     };
 
     this.httpService.url = 'http://localhost:3000/logon';

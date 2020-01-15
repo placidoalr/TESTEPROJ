@@ -1,0 +1,16 @@
+<div class="card">
+  <img src="../assets/Logo.png" style="height: 100px; width: 100px; align-self: center;" class="card-img-top">
+  <div class="card-body">
+
+    <div class="form-group">
+      <input [(ngModel)]='nome' type="text" class="form-control" id="usuario" placeholder="Username">
+      <p></p>
+      <input [(ngModel)]='senha' type="password" class="form-control" id="senha" placeholder="Senha"
+        (keydown)="keyDownFunction($event)">
+    </div>
+    <p></p>
+    <p></p>
+    <br>
+    <button type="button" class="btn btn-danger" (click)="fazerLogin()">Entrar</button>
+  </div>
+</div>

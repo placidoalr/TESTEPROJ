@@ -12,11 +12,12 @@
     
   </header>
 <div id="sidenav" class="float-left"> 
-  <app-menu-icon [text]="'Login'" [icon]="'fa fa-user-circle'" (iconClick)="click('\Login')"></app-menu-icon>
+  <app-menu-icon [text]="'Login'" [icon]="'fa fa-user-circle'" (iconClick)="click('\Login')" *ngIf="!logado"></app-menu-icon>
   <app-menu-icon [text]="'Provas'" [icon]="'fa fa-user-circle'" (iconClick)="click('\Provas')"></app-menu-icon>
   <app-menu-icon [text]="'Questões'" [icon]="'fa fa-user-circle'" (iconClick)="click('\Questoes')"></app-menu-icon>
   <app-menu-icon [text]="'Provas realizadas'" [icon]="'fa fa-user-circle'" (iconClick)="click('\ProvasRealizadas')"></app-menu-icon>
   <app-menu-icon [text]="'Executar prova'" [icon]="'fa fa-user-circle'" (iconClick)="click('\ExecProva')"></app-menu-icon>
+  <app-menu-icon [text]="'LogOut'" [icon]="'fa fa-user-circle'" (iconClick)="logOut()" *ngIf="logado"></app-menu-icon>
   </div>
 
   <div class="main">

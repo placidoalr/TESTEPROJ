@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './login/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +9,24 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'TESTEPROJ';
-  constructor(private route : Router){
+  logado: boolean = true;
+  constructor(private route: Router, private authService: AuthService) {
 
   }
-  ngOnInit(){
-    
+  ngOnInit() {
+
+    this.logado = this.authService.usuarioEstaAutenticado();
   }
-  
-  public click(rota : string){
+
+  public click(rota: string) {
     console.log(rota);
     this.route.navigateByUrl(rota);
+    this.logado = this.authService.usuarioEstaAutenticado();
+  }
+  public logOut() {
+    this.authService.logOut();
+    this.logado = this.authService.usuarioEstaAutenticado();
+    this.route.navigateByUrl("");
   }
 
 }

@@ -10,13 +10,13 @@ export class ExecProvaComponent implements OnInit {
   public list = [""];
   public listTemp = [""];
   public prova = [""];
-  public executando : boolean = false;
-  public nota : number;
-  public nome : string = "";
-  public retornarNota : boolean = false;
+  public executando: boolean = false;
+  public nota: number;
+  public nome: string = "";
+  public retornarNota: boolean = false;
 
 
-  constructor(private COM : ServerCommunicationService) {  }
+  constructor(private COM: ServerCommunicationService) { }
 
   ngOnInit() {
     this.nota = 0;
@@ -24,17 +24,17 @@ export class ExecProvaComponent implements OnInit {
     this.executando = false;
     this.retornarNota = false;
     //document.getElementById('text').focus();
-    
+
 
     this.COM.getAll("Prova").then(
-      (response : any) => {
+      (response: any) => {
         this.list = response.resposta;
       }
     ).catch(error => {
 
     });
   }
-  public async executar(pr:any){
+  public async executar(pr: any) {
     console.log(pr.prova.questoes)
     this.prova = pr.prova.questoes;
     this.executando = true;
@@ -42,32 +42,32 @@ export class ExecProvaComponent implements OnInit {
   }
 
   public async save() {
-console.log(this.prova)
+    console.log(this.prova)
     this.listTemp = this.prova.filter((x: any) => x.resp)
-    if(this.listTemp.length == this.prova.length && this.nome != ""){
-      this.listTemp.forEach((element:any) => {
-        if(element.resp == element.certa){
+    if (this.listTemp.length == this.prova.length && this.nome != "") {
+      this.listTemp.forEach((element: any) => {
+        if (element.resp == element.certa) {
           this.nota += (element.peso | 0);
         }
       });
       this.retornarNota = true;
       this.executando = false;
       let json = {
-        "nome" : this.nome,
+        "nome": this.nome,
         "nota": this.nota,
-        "questoes" : this.listTemp
+        "questoes": this.listTemp
       }
       console.log(this.nota)
-      await this.COM.post("Realizada",json).then(
-        (response : any) => {
+      await this.COM.post("Realizada", json).then(
+        (response: any) => {
 
         }
       ).catch(error => {
-        
+
       });
     }
   }
-      
+
   //namelast é pra fazer o where do nome que será alterado.
   /*public async editar(ct){
     

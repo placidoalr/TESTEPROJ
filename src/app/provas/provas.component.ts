@@ -11,33 +11,33 @@ export class ProvasComponent implements OnInit {
   public listQuest = [""];
   public list = [""];
   public listTemp = [""];
-  public editando : boolean = false;
+  public editando: boolean = false;
 
 
-  constructor(private COM : ServerCommunicationService) {  }
+  constructor(private COM: ServerCommunicationService) { }
 
   ngOnInit() {
     this.editando = false;
 
     //document.getElementById('text').focus();
-    
+
 
     this.COM.getAll("Prova").then(
-      (response : any) => {
-        console.log("oooo h "+response.resposta)
+      (response: any) => {
+        console.log("oooo h " + response.resposta)
         this.list = response.resposta;
       }
     ).catch(error => {
 
     });
     this.COM.getAll("Questao").then(
-      (response : any) => {
+      (response: any) => {
         this.listQuest = response.resposta;
       }
     ).catch(error => {
 
     });
-    
+
   }
 
 
@@ -45,23 +45,23 @@ export class ProvasComponent implements OnInit {
 
     console.log(this.listQuest)
     this.listTemp = this.listQuest.filter((x: any) => x.selected)
-    if((this.listTemp.length == (this.listTemp.filter((x: any) => x.peso)).length) && (this.listTemp.reduce((a:any,b:any) => (a | 0) + (b.peso | 0), 0))==100){
+    if ((this.listTemp.length == (this.listTemp.filter((x: any) => x.peso)).length) && (this.listTemp.reduce((a: any, b: any) => (a | 0) + (b.peso | 0), 0)) == 100) {
       let json = {
-        "questoes" : this.listTemp
+        "questoes": this.listTemp
       }
       console.log(json.questoes)
-      await this.COM.post("Prova",json).then(
-        (response : any) => {
+      await this.COM.post("Prova", json).then(
+        (response: any) => {
 
           this.ngOnInit();
         }
       ).catch(error => {
-        
+
       });
-    }else{
-      console.log("owh "+this.listTemp.reduce((a:any,b:any) => (a | 0) + (b.peso | 0), 0))
+    } else {
+      console.log("owh " + this.listTemp.reduce((a: any, b: any) => (a | 0) + (b.peso | 0), 0))
     }
-    
+
   }
   //namelast é pra fazer o where do nome que será alterado.
   /*public async editar(ct){
@@ -92,11 +92,11 @@ export class ProvasComponent implements OnInit {
     });
     this.ngOnInit();
   }*/
-  keyDownFunction(event,qt) {
-    if(event.keyCode == 13) {
-      if(!this.editando){
+  keyDownFunction(event, qt) {
+    if (event.keyCode == 13) {
+      if (!this.editando) {
         this.save();
-      }else{
+      } else {
         //this.saveEdit(ct);
       }
     }

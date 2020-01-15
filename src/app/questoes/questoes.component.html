@@ -5,54 +5,54 @@
 </div>
 </div>-->
 <div class="card teste">
-    <div class="card-body">
-       <h5 class="card-title"> <b>Cadastro de questões</b></h5>
-         <p></p>
-           
-             <div class="form-group">
-                <label>Questão:</label> <input type="text" class="form-control" [(ngModel)]="questao" id="text" required>
-                <p></p>
-                <label >Resposta 1:</label> <input type="text" class="form-control" [(ngModel)]="r1" id="questao" required>
-                <p></p>
-                <label>Resposta 2:</label> <input type="text" class="form-control" [(ngModel)]="r2" id="questao" required>
-                <p></p>
-                <label>Resposta 3:</label> <input type="text" class="form-control" [(ngModel)]="r3"  id="questao" required>
-                <p></p>
-                <label>Resposta 4:</label> <input type="text" class="form-control" [(ngModel)]="r4"  id="questao" required>
-                <p></p>
-             
-              </div>
-             <label>Escolha a questão correta: </label>
-             <div class="form-check" >
-              <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="correta" [(ngModel)]="c" value="r1">
-                Resposta 1
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="correta" [(ngModel)]="c" value="r2">
-                    Resposta 2
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="correta" [(ngModel)]="c" value="r3">
-                    Resposta 3
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="correta"[(ngModel)]="c" value="r4">
-                    Resposta 4
-                </label>
-              </div>
-              
-      <a class="btn btn-danger" style="float:right " (click)="save()" *ngIf="!editando">Salvar</a>
-      
-      <a class="btn btn-danger" style="float:right " (click)="saveEdit(ct)" *ngIf="editando">Editar</a>
-      <a class="btn btn-secondary" style="float:left" (click)="ngOnInit()">Limpar</a>
+  <div class="card-body">
+    <h5 class="card-title"> <b>Cadastro de questões</b></h5>
+    <p></p>
+
+    <div class="form-group">
+      <label>Questão:</label> <input type="text" class="form-control" [(ngModel)]="questao" id="text" required>
+      <p></p>
+      <label>Resposta 1:</label> <input type="text" class="form-control" [(ngModel)]="a" id="questao" required>
+      <p></p>
+      <label>Resposta 2:</label> <input type="text" class="form-control" [(ngModel)]="b" id="questao" required>
+      <p></p>
+      <label>Resposta 3:</label> <input type="text" class="form-control" [(ngModel)]="c" id="questao" required>
+      <p></p>
+      <label>Resposta 4:</label> <input type="text" class="form-control" [(ngModel)]="d" id="questao" required>
+      <p></p>
+
     </div>
+    <label>Escolha a questão correta: </label>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="correta" [(ngModel)]="certa" value="a">
+        Resposta 1
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="correta" [(ngModel)]="certa" value="b">
+        Resposta 2
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="correta" [(ngModel)]="certa" value="c">
+        Resposta 3
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="correta" [(ngModel)]="certa" value="d">
+        Resposta 4
+      </label>
+    </div>
+
+    <a class="btn btn-danger" style="float:right " (click)="save()" *ngIf="!editando">Salvar</a>
+
+    <a class="btn btn-danger" style="float:right " (click)="saveEdit(qt)" *ngIf="editando">Editar</a>
+    <a class="btn btn-secondary" style="float:left" (click)="ngOnInit()">Limpar</a>
+  </div>
 </div>
 <table class="table table-bordered" *ngIf="list.length > 0">
   <thead>
@@ -60,17 +60,14 @@
       <th scope="col" class="nome">Questão</th>
       <th scope="col" class="acao">EDITAR</th>
     </tr>
-    </thead>
-    <tbody>
-      <tr  *ngFor="let qt of list">
-        <th scope="row">{{qt.ask}}</th>
-        <td >
-          <a class="btn icone" style="margin-right: 4px;" (click)="editar(qt)">
-            <i class="fa fa-edit" ></i>
-          </a> 
-          <a class="btn icone" style="margin-right: 3px;" (click)="deletar(qt)">
-            <i class="fa fa-close"></i>
-          </a>                 
-        </td>
-    </tbody>
+  </thead>
+  <tbody>
+    <tr *ngFor="let qt of list">
+      <th scope="row">{{qt.ask}}</th>
+      <td>
+        <a class="btn icone" style="margin-right: 4px;" (click)="editar(qt)">
+          <i class="fa fa-edit"></i>
+        </a>
+      </td>
+  </tbody>
 </table>

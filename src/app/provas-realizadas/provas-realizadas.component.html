@@ -1,1 +1,98 @@
-<p>provas-realizadas works!</p>
+<!--<div class="card teste">
+    <div class="card-body">
+        <h5 class="card-title"> <b>Cadastro do Layout de Ordem de Manutenção</b></h5>
+<p>questoes works!</p>
+</div>
+</div>-->
+<div class="card teste" *ngIf="executando">
+    <div class="card-body">
+        <h5 class="card-title"> <b>Executar prova</b></h5>
+        <p></p>
+        <div>
+            <label>Nome: {{prova.nome}}</label><br>
+            <label>Nota: {{prova.nota}}</label>
+
+            <p></p>
+
+        </div>
+        <div class="card-body" *ngFor="let qt of prova.questoes">
+            <div class="card-body border errada" *ngIf="qt.resp != qt.certa">
+                <label>Questão: {{qt.ask}}</label>
+                <p></p>
+                <label class="row">
+                    <div class="col-11">a) {{qt.a}}</div>
+                </label>
+                <p></p>
+                <label class="row">
+                    <div class="col-11">b) {{qt.b}}</div>
+                </label>
+                <p></p>
+                <label class="row">
+                    <div class="col-11">c) {{qt.c}}</div>
+                </label>
+                <p></p>
+                <label class="row">
+                    <div class="col-11">d) {{qt.d}}</div>
+                </label>
+                <p></p>
+                <label class="row">
+                    <div class="col-11">Peso {{qt.peso}}%</div>
+                </label>
+                <p></p>
+                <label class="row">
+                    <div class="col-11">Resposta incorreta do aluno ({{qt.resp}}) enquanto a correta seria
+                        ({{qt.certa}})</div>
+                </label>
+            </div>
+            <div class="card-body border correta" *ngIf="qt.resp == qt.certa">
+                <label>Questão: {{qt.ask}}</label>
+                <p></p>
+                <label class="row">
+                    <div class="col-11">a) {{qt.a}}</div>
+                </label>
+                <p></p>
+                <label class="row">
+                    <div class="col-11">b) {{qt.b}}</div>
+                </label>
+                <p></p>
+                <label class="row">
+                    <div class="col-11">c) {{qt.c}}</div>
+                </label>
+                <p></p>
+                <label class="row">
+                    <div class="col-11">d) {{qt.d}}</div>
+                </label>
+                <p></p>
+                <label class="row">
+                    <div class="col-11">Peso {{qt.peso}}%</div>
+                </label>
+                <p></p>
+                <label class="row">
+                    <div class="col-11">Resposta correta do aluno ({{qt.resp}})</div>
+                </label>
+            </div>
+        </div>
+        <a class="btn btn-secondary" style="float:left" (click)="ngOnInit()" *ngIf="executando">Voltar</a>
+    </div>
+</div>
+<table class="table table-bordered" *ngIf="!executando && !retornarNota">
+    <thead>
+        <tr class="topo">
+            <th scope="col" class="nome">Prova</th>
+            <th scope="col" class="nome">Nome</th>
+            <th scope="col" class="nome">Nota</th>
+            <th scope="col" class="acao">EXECUTAR</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pr of list">
+            <th scope="row">{{pr.id}}</th>
+            <th scope="row">{{pr.prova.nome}}</th>
+            <th scope="row">{{pr.prova.nota}}</th>
+            <td>
+                <a class="btn icone" style="margin-right: 4px;" (click)="executar(pr)">
+                    <i class="fa fa-edit"></i>
+                </a>
+            </td>
+    </tbody>
+</table>

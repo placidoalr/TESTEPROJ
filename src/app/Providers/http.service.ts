@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response} from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -14,71 +14,71 @@ import 'rxjs/add/operator/do';
 })
 export class HttpService {
 
-  public url : string;
-  public token : string;
+  public url: string;
+  public token: string;
 
-  private TIMEOUT : number = 15000;
+  private TIMEOUT: number = 15000;
 
   constructor(private http: Http) {
     this.url = null;
     this.token = null;
   }
-  private prepareHeaders(contentType : boolean){
+  private prepareHeaders(contentType: boolean) {
     var headers = new Headers();
     headers.append('Accept', 'application/json');
 
-    if (contentType){
+    if (contentType) {
       headers.append('Content-Type', 'application/json');
     }
 
-    if (this.token == ''){
+    if (this.token == '') {
       this.token = null;
     }
 
-    if (this.token != null){
+    if (this.token != null) {
       headers.append('Authorization', 'bearer ' + this.token);
     }
 
     return headers;
   }
 
-  public get(){
+  public get() {
     let headers = this.prepareHeaders(false);
-    return this.http.get(this.url, {headers: headers}).timeout(this.TIMEOUT).map((res : Response) => res.json()).toPromise();
+    return this.http.get(this.url, { headers: headers }).timeout(this.TIMEOUT).map((res: Response) => res.json()).toPromise();
 
   }
-  public post(obj : any){
-    let body : string = '';
+  public post(obj: any) {
+    let body: string = '';
 
     let headers = this.prepareHeaders(true);
 
-    if ( obj != null && obj != undefined){
+    if (obj != null && obj != undefined) {
       body = JSON.stringify(obj);
     }
-    return this.http.post(this.url, body,{headers: headers}).timeout(this.TIMEOUT).map((res : Response) => res.json).toPromise();
+    return this.http.post(this.url, body, { headers: headers }).timeout(this.TIMEOUT).map((res: Response) => res.json).toPromise();
   }
-  public put(obj : any){
-    let body : string = '';
+  public put(obj: any) {
+    let body: string = '';
 
     let headers = this.prepareHeaders(true);
 
-    if (obj != null && obj != undefined){
+    if (obj != null && obj != undefined) {
       body = JSON.stringify(obj);
     }
 
-    return this.http.put(this.url, body, {headers: headers}).timeout(this.TIMEOUT).toPromise();;
+    return this.http.put(this.url, body, { headers: headers }).timeout(this.TIMEOUT).toPromise();;
 
   }
-  public patch (obj : any){
-    let body : string = '';
+  public patch(obj: any) {
+    let body: string = '';
 
     let headers = this.prepareHeaders(true);
 
-    if (obj != null && obj != undefined){
+    if (obj != null && obj != undefined) {
       body = JSON.stringify(obj);
     }
 
-    return this.http.patch(this.url, body, {headers: headers}).timeout(this.TIMEOUT).toPromise();;
+    return this.http.patch(this.url, body, { headers: headers }).timeout(this.TIMEOUT).toPromise();;
 
   }
 }

@@ -7,70 +7,68 @@ import { ServerCommunicationService } from '../Providers/server-communication.se
   styleUrls: ['./provas-realizadas.component.css']
 })
 export class ProvasRealizadasComponent implements OnInit {
-
-  public id : any;
-  public questao: string;
-  public r1: string;
-  public r2: string;
-  public r3: string;
-  public r4: string;
-  public c: string;
-  public listQuest = [];
-  public list = [];
-  public editando : boolean = false;
+  public list = [""];
+  public listTemp = [""];
+  public prova = [""];
+  public executando: boolean = false;
+  public nota: number;
+  public nome: string = "";
+  public retornarNota: boolean = false;
 
 
-  constructor(private COM : ServerCommunicationService) {  }
+  constructor(private COM: ServerCommunicationService) { }
 
   ngOnInit() {
-    this.id = 0;
-    this.questao = '';
-    this.r1 = '';
-    this.r2 = '';
-    this.r3 = '';
-    this.r4 = '';
-    this.c = 'r1';
-    this.editando = false;
+    this.nota = 0;
+    this.nome = "";
+    this.executando = false;
+    this.retornarNota = false;
+    //document.getElementById('text').focus();
 
-    document.getElementById('text').focus();
-    
 
-    this.COM.getAll("ProvaRealizada").then(
-      (response : any) => {
-        console.log("lista"+response.resposta)
-        this.listQuest = response.resposta;
+    this.COM.getAll("Realizada").then(
+      (response: any) => {
+        this.list = response.realizadas;
+        console.table(this.list)
       }
     ).catch(error => {
 
     });
-    
+  }
+  public async executar(pr: any) {
+    console.log(pr.prova)
+    this.prova = pr.prova;
+    this.executando = true;
+
   }
 
-
   public async save() {
-    if((this.questao!=''&&this.r1!=''&&this.r2!=''&&this.r3!=''&&this.r4!=''&&this.c!='')
-    &&(this.questao!=undefined&&this.r1!=undefined&&this.r2!=undefined&&this.r3!=undefined&&this.r4!=undefined&&this.c!=undefined)){
-
-      console.log(this.questao+" / "+this.r1+" / "+this.r2+" / "+this.r3+" / "+this.r4+" / "+this.c)
+    console.log(this.prova)
+    this.listTemp = this.prova.filter((x: any) => x.resp)
+    if (this.listTemp.length == this.prova.length && this.nome != "") {
+      this.listTemp.forEach((element: any) => {
+        if (element.resp == element.certa) {
+          this.nota += (element.peso / 10 | 0);
+        }
+      });
+      this.retornarNota = true;
+      this.executando = false;
       let json = {
-        "ask": this.questao,
-        "r1" : this.r1,
-        "r2" : this.r2,
-        "r3" : this.r3,
-        "r4" : this.r4,
-        "certa" : this.c,
+        "nome": this.nome,
+        "nota": this.nota,
+        "questoes": this.listTemp
       }
-      console.log(json)
-      await this.COM.post("ProvaRealizada",json).then(
-        (response : any) => {
+      console.log(this.nota)
+      await this.COM.post("Realizada", json).then(
+        (response: any) => {
 
-          this.ngOnInit();
         }
       ).catch(error => {
-        
+
       });
     }
   }
+
   //namelast é pra fazer o where do nome que será alterado.
   /*public async editar(ct){
     
@@ -99,7 +97,7 @@ export class ProvasRealizadasComponent implements OnInit {
 
     });
     this.ngOnInit();
-  }*/
+  }
   keyDownFunction(event,qt) {
     if(event.keyCode == 13) {
       if(!this.editando){
@@ -109,4 +107,5 @@ export class ProvasRealizadasComponent implements OnInit {
       }
     }
   }
+*/
 }

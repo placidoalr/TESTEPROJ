@@ -10,14 +10,14 @@ import { FormsModule } from '@angular/forms';
 
 
 
-const routes: Routes = [  
-  {path: '', component: ExecProvaComponent, canActivate: [AuthGuardService]},
-  {path: 'Login', component: LoginComponent},
-  {path: 'Provas', component: ProvasComponent},
-  {path: 'Questoes', component: QuestoesComponent},
-  {path: 'ProvasRealizadas', component: ProvasRealizadasComponent},
-  {path: 'ExecProva', component: ExecProvaComponent},
-  
+const routes: Routes = [
+  { path: '', component: ExecProvaComponent, canActivate: [AuthGuardService] },
+  { path: 'Login', component: LoginComponent },
+  { path: 'Provas', component: ProvasComponent, canActivate: [AuthGuardService] },
+  { path: 'Questoes', component: QuestoesComponent, canActivate: [AuthGuardService] },
+  { path: 'ProvasRealizadas', component: ProvasRealizadasComponent, canActivate: [AuthGuardService] },
+  { path: 'ExecProva', component: ExecProvaComponent },
+
 ];
 
 
@@ -30,4 +30,4 @@ const routes: Routes = [
 export class AppRoutingModule {
 
 
- }
+}

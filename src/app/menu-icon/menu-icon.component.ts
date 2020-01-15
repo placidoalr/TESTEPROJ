@@ -7,18 +7,18 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./menu-icon.component.css']
 })
 export class MenuIconComponent implements OnInit {
-  @Output() iconClick : EventEmitter<any> = new EventEmitter();
+  @Output() iconClick: EventEmitter<any> = new EventEmitter();
   @Input() text = '';
   @Input() icon = '';
-  
+
 
   constructor() { }
 
   ngOnInit() {
-    
+
   }
 
-  click(){
+  click() {
     this.iconClick.emit();
   }
 
