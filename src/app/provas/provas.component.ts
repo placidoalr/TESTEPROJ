@@ -8,97 +8,44 @@ import { ServerCommunicationService } from '../Providers/server-communication.se
 })
 export class ProvasComponent implements OnInit {
 
-  public listQuest = [""];
-  public list = [""];
-  public listTemp = [""];
-  public editando: boolean = false;
+  public listQuest = [""];//lista de questões
+  public list = [""];//lista de provas
+  public listTemp = [""];//lista temporária
 
 
   constructor(private COM: ServerCommunicationService) { }
 
   ngOnInit() {
-    this.editando = false;
-
-    //document.getElementById('text').focus();
-
-
-    this.COM.getAll("Prova").then(
+    this.COM.getAll("Prova").then( //Busca lista de provas
       (response: any) => {
-        console.log("oooo h " + response.resposta)
         this.list = response.resposta;
       }
     ).catch(error => {
 
     });
-    this.COM.getAll("Questao").then(
+    this.COM.getAll("Questao").then(//Busca lista de questões
       (response: any) => {
         this.listQuest = response.resposta;
       }
     ).catch(error => {
 
     });
-
   }
 
-
   public async save() {
-
-    console.log(this.listQuest)
-    this.listTemp = this.listQuest.filter((x: any) => x.selected)
+    this.listTemp = this.listQuest.filter((x: any) => x.selected) //armazena as questões selecionadas depois compara o tamanho da lista temp com os que tem valores de peso e se a soma do peso é 100
     if ((this.listTemp.length == (this.listTemp.filter((x: any) => x.peso)).length) && (this.listTemp.reduce((a: any, b: any) => (a | 0) + (b.peso | 0), 0)) == 100) {
       let json = {
         "questoes": this.listTemp
       }
-      console.log(json.questoes)
-      await this.COM.post("Prova", json).then(
+      await this.COM.post("Prova", json).then(//Cria a prova
         (response: any) => {
-
           this.ngOnInit();
         }
       ).catch(error => {
 
       });
-    } else {
-      console.log("owh " + this.listTemp.reduce((a: any, b: any) => (a | 0) + (b.peso | 0), 0))
     }
 
-  }
-  //namelast é pra fazer o where do nome que será alterado.
-  /*public async editar(ct){
-    
-    this.questao = ct.NOME;
-    this.namelast = ct.NOME;
-    this.editando = true;
-    document.getElementById('text').focus();
-  }
-  public async saveEdit(ct) {
-    await this.QUEST.edit(this.name,this.namelast).then(
-      (response : any) => {
-
-      }
-    ).catch(error => {
-
-    });
-    this.ngOnInit();
-  }
-
-  public async deletar(ct){
-    await this.QUEST.delete(ct.NOME).then(
-      (response : any) => {
-
-      }
-    ).catch(error => {
-
-    });
-    this.ngOnInit();
-  }*/
-  keyDownFunction(event, qt) {
-    if (event.keyCode == 13) {
-      if (!this.editando) {
-        this.save();
-      } else {
-        //this.saveEdit(ct);
-      }
-    }
   }
 }

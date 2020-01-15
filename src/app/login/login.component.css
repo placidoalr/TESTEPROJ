@@ -73,3 +73,9 @@ background: #b30000;
   font-size: 30px;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
+.teste{
+  width: 90%;
+  height:auto;
+  margin-left: 4%;
+  margin-top: 2%;
+}

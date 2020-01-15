@@ -7,26 +7,18 @@ import { ServerCommunicationService } from '../Providers/server-communication.se
   styleUrls: ['./provas-realizadas.component.css']
 })
 export class ProvasRealizadasComponent implements OnInit {
-  public list = [""];
-  public listTemp = [""];
-  public prova = [""];
-  public executando: boolean = false;
-  public nota: number;
-  public nome: string = "";
-  public retornarNota: boolean = false;
+  public list = [""];//Lista de provas realizadas
+  public listTemp = [""];//Lista temporária
+  public prova = [""];//Prova selecionada para exibir os dados completos
+  public executando: boolean = false;//se está exibindo uma prova ou não
 
 
   constructor(private COM: ServerCommunicationService) { }
 
   ngOnInit() {
-    this.nota = 0;
-    this.nome = "";
     this.executando = false;
-    this.retornarNota = false;
-    //document.getElementById('text').focus();
 
-
-    this.COM.getAll("Realizada").then(
+    this.COM.getAll("Realizada").then(//busca as provas realizadas
       (response: any) => {
         this.list = response.realizadas;
         console.table(this.list)
@@ -35,77 +27,11 @@ export class ProvasRealizadasComponent implements OnInit {
 
     });
   }
-  public async executar(pr: any) {
-    console.log(pr.prova)
+
+  public async executar(pr: any) {//Exibe a prova selecionada
     this.prova = pr.prova;
     this.executando = true;
 
   }
 
-  public async save() {
-    console.log(this.prova)
-    this.listTemp = this.prova.filter((x: any) => x.resp)
-    if (this.listTemp.length == this.prova.length && this.nome != "") {
-      this.listTemp.forEach((element: any) => {
-        if (element.resp == element.certa) {
-          this.nota += (element.peso / 10 | 0);
-        }
-      });
-      this.retornarNota = true;
-      this.executando = false;
-      let json = {
-        "nome": this.nome,
-        "nota": this.nota,
-        "questoes": this.listTemp
-      }
-      console.log(this.nota)
-      await this.COM.post("Realizada", json).then(
-        (response: any) => {
-
-        }
-      ).catch(error => {
-
-      });
-    }
-  }
-
-  //namelast é pra fazer o where do nome que será alterado.
-  /*public async editar(ct){
-    
-    this.questao = ct.NOME;
-    this.namelast = ct.NOME;
-    this.editando = true;
-    document.getElementById('text').focus();
-  }
-  public async saveEdit(ct) {
-    await this.QUEST.edit(this.name,this.namelast).then(
-      (response : any) => {
-
-      }
-    ).catch(error => {
-
-    });
-    this.ngOnInit();
-  }
-
-  public async deletar(ct){
-    await this.QUEST.delete(ct.NOME).then(
-      (response : any) => {
-
-      }
-    ).catch(error => {
-
-    });
-    this.ngOnInit();
-  }
-  keyDownFunction(event,qt) {
-    if(event.keyCode == 13) {
-      if(!this.editando){
-        this.save();
-      }else{
-        //this.saveEdit(ct);
-      }
-    }
-  }
-*/
 }

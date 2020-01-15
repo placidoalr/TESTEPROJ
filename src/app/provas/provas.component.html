@@ -1,13 +1,8 @@
-<!--<div class="card teste">
-    <div class="card-body">
-        <h5 class="card-title"> <b>Cadastro do Layout de Ordem de Manutenção</b></h5>
-<p>questoes works!</p>
-</div>
-</div>-->
 <div class="card teste">
   <div class="card-body">
     <h5 class="card-title"> <b>Cadastro de Provas</b></h5>
     <p></p>
+    <!--Tabela com as questões para adicionar na prova-->
     <table class="table table-bordered" *ngIf="listQuest.length > 0">
       <thead>
         <tr class="topo">
@@ -28,30 +23,23 @@
           <td><input type="text" class="form-control" [(ngModel)]="qt.peso"></td>
       </tbody>
     </table>
+    <!--Tabela com as questões para adicionar na prova-->
 
-    <a class="btn btn-danger" style="float:right " (click)="save()" *ngIf="!editando">Salvar</a>
-
-    <a class="btn btn-danger" style="float:right " (click)="saveEdit(ct)" *ngIf="editando">Editar</a>
+    <a class="btn btn-danger" style="float:right " (click)="save()">Salvar</a>
     <a class="btn btn-secondary" style="float:left" (click)="ngOnInit()">Limpar</a>
   </div>
 </div>
-<table class="table table-bordered">
+<!--Tabela com as provas já criadas-->
+<table class="table table-bordered" *ngIf="list.length > 0">
   <thead>
     <tr class="topo">
       <th scope="col" class="nome">Prova</th>
-      <th scope="col" class="acao">EDITAR</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let pr of list">
+    <tr *ngFor="let pr of list" >
       <th scope="row">{{pr.id}}</th>
-      <td>
-        <a class="btn icone" style="margin-right: 4px;" (click)="editar(pr)">
-          <i class="fa fa-edit"></i>
-        </a>
-        <a class="btn icone" style="margin-right: 3px;" (click)="deletar(pr)">
-          <i class="fa fa-close"></i>
-        </a>
-      </td>
+      
   </tbody>
 </table>
+<!--Tabela com as provas já criadas-->

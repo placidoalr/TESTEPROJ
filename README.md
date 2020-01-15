@@ -76,4 +76,6 @@ Referente as horas, se for contar desde a parte de aprendizado até a entrega fi
 
 No fim, acho que o start foi a parte mais complicada, que levou mais tempo em assuntos pequenos que talvez não precisaria demorar tanto, mesmo estando no inicio.
 
+Vi que ficaram alguns probleminhas de carregamento, as vezes quando adiciona um dado, ele retorna ok antes mesmo de chegar no banco, daí a página atualiza e o dado não aparece.
+
 Espero que atenda as expectativas, e espero poder trabalhar com vocês.

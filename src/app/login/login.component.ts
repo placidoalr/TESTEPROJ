@@ -17,15 +17,14 @@ export class LoginComponent implements OnInit {
     this.nome = "";
     this.senha = "";
     document.getElementById('usuario').focus();
-    this.fazerLogin();
   }
 
   fazerLogin() {
     this.authService.fazerLogin(this.nome, this.senha);
   }
-  keyDownFunction(event) {
-    if (event.keyCode == 13) {
 
+  keyDownFunction(event) {//se precionar enter executa a função fazerLogin()
+    if (event.keyCode == 13) {
       this.fazerLogin();
     }
   }

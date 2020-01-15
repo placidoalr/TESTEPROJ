@@ -9,14 +9,14 @@ import { ServerCommunicationService } from '../Providers/server-communication.se
 export class QuestoesComponent implements OnInit {
 
   public id: any;
-  public questao: string;
-  public a: string;
+  public questao: string;//pergunta
+  public a: string;//questões de a à d
   public b: string;
   public c: string;
   public d: string;
-  public certa: string;
-  public list = [];
-  public editando: boolean = false;
+  public certa: string; //questão correta
+  public list = [];//lista de questões já adicionadas
+  public editando: boolean = false;//Se está editando uma questão ou não
 
 
   constructor(private COM: ServerCommunicationService) { }
@@ -31,12 +31,8 @@ export class QuestoesComponent implements OnInit {
     this.certa = 'a';
     this.editando = false;
 
-    document.getElementById('text').focus();
-
-
-    this.COM.getAll("Questao").then(
+    this.COM.getAll("Questao").then(//busca todas as questões existentes
       (response: any) => {
-        console.log("lista" + response.resposta)
         this.list = response.resposta;
       }
     ).catch(error => {
@@ -50,7 +46,6 @@ export class QuestoesComponent implements OnInit {
     if ((this.questao != '' && this.a != '' && this.b != '' && this.c != '' && this.d != '' && this.c != '')
       && (this.questao != undefined && this.a != undefined && this.b != undefined && this.c != undefined && this.d != undefined && this.c != undefined)) {
 
-      console.log(this.questao + " / " + this.a + " / " + this.b + " / " + this.c + " / " + this.d + " / " + this.c)
       let json = {
         "ask": this.questao,
         "a": this.a,
@@ -59,10 +54,8 @@ export class QuestoesComponent implements OnInit {
         "d": this.d,
         "certa": this.certa,
       }
-      console.log(json)
-      await this.COM.post("Questao", json).then(
+      await this.COM.post("Questao", json).then(//adiciona questão
         (response: any) => {
-
           this.ngOnInit();
         }
       ).catch(error => {
@@ -70,8 +63,8 @@ export class QuestoesComponent implements OnInit {
       });
     }
   }
-  //namelast é pra fazer o where do nome que será alterado.
-  public async editar(qt) {
+
+  public async editar(qt) {//adiciona os dados da questão selecionada para os campos que serão editados e seta o editando como true
     this.id = qt.id
     this.questao = qt.ask
     this.a = qt.a
@@ -80,9 +73,9 @@ export class QuestoesComponent implements OnInit {
     this.d = qt.d
     this.certa = qt.certa
     this.editando = true;
-    document.getElementById('text').focus();
   }
-  public async saveEdit(qt) {
+
+  public async saveEdit(qt) {//salva a edição enviando para o .edit 
     let json = {
       "ask": this.questao,
       "id": this.id,
@@ -92,7 +85,7 @@ export class QuestoesComponent implements OnInit {
       "d": this.d,
       "certa": this.certa
     }
-    console.log(json)
+
     await this.COM.edit("Questao", json).then(
       (response: any) => {
 
@@ -102,14 +95,6 @@ export class QuestoesComponent implements OnInit {
 
     });
   }
-  keyDownFunction(event, qt) {
-    if (event.keyCode == 13) {
-      if (!this.editando) {
-        this.save();
-      } else {
-        this.saveEdit(qt);
-      }
-    }
-  }
+
 }
 

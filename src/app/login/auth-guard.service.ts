@@ -15,7 +15,7 @@ export class AuthGuardService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> {
 
-    if (this.authService.usuarioEstaAutenticado()) {
+    if (this.authService.usuarioEstaAutenticado()) {//se usuário não está autenticado e tenta acessar alguma página bloqueada ele é direcionado para o login
       return observableOf(true);
     } else {
       this.router.navigate(['/Login']);

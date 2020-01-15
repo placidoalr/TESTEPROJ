@@ -1,6 +1,7 @@
 <div class="card teste">
   <div class="card-body">
     <h5 class="card-title"> <b>Executar prova</b></h5>
+    <!-- div que só será exibido caso a variavel executando esteja true-->
     <div *ngIf="executando">
       <p></p>
       <div>
@@ -41,8 +42,11 @@
 
       <a class="btn btn-secondary" style="float:left" (click)="ngOnInit()" *ngIf="executando">Limpar</a>
     </div>
+    <!-- div que só será exibido caso a variavel executando esteja true-->
   </div>
 </div>
+
+<!-- div que só será exibido caso a variavel executando e retornar nota esteja false-->
 <table class="table table-bordered" *ngIf="!executando && !retornarNota">
   <thead>
     <tr class="topo">
@@ -60,6 +64,9 @@
       </td>
   </tbody>
 </table>
+<!-- div que só será exibido caso a variavel executando e retornar nota esteja false-->
+
+<!-- div que só será exibido caso a variavel retornar nota esteja true-->
 <div class="card teste" *ngIf="retornarNota">
   <div class="card-body">
     <h5 class="card-title"> <b>Prova finalizada!</b></h5>
@@ -67,3 +74,4 @@
     <a class="btn btn-secondary" style="float: right;" (click)="ngOnInit()" *ngIf="retornarNota">Continuar</a>
   </div>
 </div>
+<!-- div que só será exibido caso a variavel retornar nota esteja true-->

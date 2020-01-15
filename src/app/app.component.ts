@@ -23,6 +23,7 @@ export class AppComponent {
     this.route.navigateByUrl(rota);
     this.logado = this.authService.usuarioEstaAutenticado();
   }
+  
   public logOut() {
     this.authService.logOut();
     this.logado = this.authService.usuarioEstaAutenticado();
